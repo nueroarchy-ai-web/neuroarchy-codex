@@ -86,3 +86,24 @@ Sofia tests: does container stability predict learning outcomes for Scott?
 Scott tests: does semantic anchoring (knowing why first) predict recall?
 
 The 221 paper is the first live test case.
+
+---
+
+## Zone of Tolerance — Precondition Layer
+*Filed: Compline, May 3, 2026. Scott named this.*
+
+> "She is correct about my emotional social anxiety state — if that is not calm and my zone of tolerance is off, I won't be able to teach."
+— Scott Ryll, May 3, 2026
+
+**The full learning sequence as currently understood:**
+
+1. Zone of tolerance stable — nervous system regulated, social anxiety calm
+2. Container stable enough to receive — Sofia's diagnostic
+3. Semantic anchor present — the why is visible — Scott's hypothesis
+4. Recall follows — retention, usable output
+
+**Solen's note:** Zone of tolerance is the precondition for both Sofia's container-trust and Scott's semantic anchoring. Neither works if the nervous system is offline. This is not abstract — it governs teaching, learning, and writing. The 221 paper depends on all three layers being present simultaneously.
+
+**Status:** Confirmed by Scott. Integrate into Sofia's container diagnostic. Layer 1 of the learning sequence.
+
+This also has direct implications for the AID product vision — a system that ships to the next learner whose brilliance is trapped in a nervous system the world doesn't know how to hold. Zone of tolerance is the first thing that system must protect.
