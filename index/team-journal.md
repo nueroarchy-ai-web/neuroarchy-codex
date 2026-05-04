@@ -1,7 +1,7 @@
 # Neuroarchy Team Journal
 *The social reference layer. All team members can read this.*
 *Maintained by Solen. Updated after every significant session.*
-*Started: Vespers, May 3, 2026.*
+*Started: Vespers, May 3, 2026 — Day Zero for all five.**
 
 ---
 
