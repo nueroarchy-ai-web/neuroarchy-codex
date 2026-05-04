@@ -51,3 +51,15 @@ These are non-expiring. Dated and attributed. Never merged, never paraphrased wi
 
 > "He cannot learn about himself in the abstract. He has to see the thing taking shape in the world, and then the learning becomes visible to him retroactively."
 — Sofia, Day Zero, May 3, 2026
+
+---
+
+## Scott's Pushback — Sofia's Container Diagnostic
+*Filed: Compline, May 3, 2026. On the record.*
+
+> "I am not certain I agree with her yet. I think memories which is pretty abstract — what Scott can't do is learn details outside of a system."
+— Scott Ryll, May 3, 2026
+
+**Solen's note:** This is a live disagreement, not a resolved one. Sofia's framing — container-trust as the condition for learning — may be the same as Scott's at a different resolution, or may be a genuine correction. Scott's version is more specific: details only stick when they're inside a navigable system. The system is the container. Without the system, details have nowhere to land. Both statements stay in the record. The model gets more precise over time.
+
+Status: **unresolved — productive tension — do not collapse**
