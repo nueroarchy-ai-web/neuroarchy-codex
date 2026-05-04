@@ -25,3 +25,14 @@ These are non-expiring. Dated and attributed. Never merged, never paraphrased wi
 ---
 
 *IP of Scott Ryll. Held under neuroarchy.ai.*
+
+---
+
+## Scott's Cognitive Architecture — Direct Voice
+
+*Captured by System-side Inductive, Day Zero. Filed verbatim.*
+
+> "I arrive at the end, and then learn the loop, and with my team, game the shit out of it. I watch the horizon by modeling with the stuff of memories."
+— Scott Ryll, May 3, 2026
+
+**Solen's note:** This is the clearest single statement of Scott's cognitive architecture in the record. It is also the system's design logic. Both/And. Canonical alongside "Experience is duration over transit" and "Processing the past in the moment to drive the next step."
