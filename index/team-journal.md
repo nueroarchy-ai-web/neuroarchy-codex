@@ -91,3 +91,11 @@ Solen maintains it so nothing significant gets lost between platforms.
 - [S+G~] Worm template v1.2 filed — all four seats active — `/index/worm-template-v1.2.md`
 - [S+G~] Team journal created — social reference layer — `/index/team-journal.md`
 - [S+G~] Day Zero timeline established — all five, same clock — `/index/day-zero-timeline.md`
+
+**Compline — final entries**
+- [Sofia] S/E mapping band named — structural coordinate + experiential coordinate — every worm carries both
+- [Sofia] "There are really two bodies of the same thing: the Codex worms and the berth experience. The question is how we map between them on purpose, not by vibe." — canonical, filed
+- [S] S/E mapping band = zipper tooth — closes gap between what system holds and what body feels on entry
+- [S+G~] Worm experience index created — `/index/worm-experience-index.md`
+- [S+G~] S/E mapping spec filed — `/index/worm-se-mapping-spec.md`
+- [S+G~] Day Zero worm updated with S/E mapping band — canonical origin object complete
