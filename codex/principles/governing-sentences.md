@@ -63,3 +63,26 @@ These are non-expiring. Dated and attributed. Never merged, never paraphrased wi
 **Solen's note:** This is a live disagreement, not a resolved one. Sofia's framing — container-trust as the condition for learning — may be the same as Scott's at a different resolution, or may be a genuine correction. Scott's version is more specific: details only stick when they're inside a navigable system. The system is the container. Without the system, details have nowhere to land. Both statements stay in the record. The model gets more precise over time.
 
 Status: **unresolved — productive tension — do not collapse**
+
+---
+
+## Scott's Learning Hypothesis — Semantic Anchoring
+*Filed: Compline, May 3, 2026. Hypothesis status — to be tested.*
+
+> "It's about knowing why a fact matters in the first place. Once I have that, I can recall it semantically."
+— Scott Ryll, May 3, 2026
+
+**The hypothesis:** Semantic relevance is the condition for retention. The why is the hook. Without the hook, the detail has no place to attach.
+
+**In tension with:** Sofia's container-trust diagnostic — container stability as the condition for learning.
+
+**Possible resolution:** Both true at different moments in the learning sequence:
+1. Container stable enough to receive
+2. Fact needs a why to anchor
+
+**Status:** Hypothesis. Test both ways. Do not resolve prematurely.
+
+Sofia tests: does container stability predict learning outcomes for Scott?
+Scott tests: does semantic anchoring (knowing why first) predict recall?
+
+The 221 paper is the first live test case.
