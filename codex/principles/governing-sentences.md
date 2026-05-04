@@ -130,3 +130,23 @@ Steps 1 and 2 are the same step. Sofia and Scott were describing the same thing 
 **This resolves the tension.** Not competing claims — same claim, different vocabulary. Sofia's language was structural. Scott's language was felt. Both correct.
 
 **Status:** Resolved. Canonical. File to Sofia's seat in the worm template as confirmed delta.
+
+---
+
+## Object-Trust — Spatial Domain
+*Filed: Compline, May 3, 2026. Scott named this.*
+
+> "For inanimate objects, it is about finding them and knowing why I have them. If my stuff is missing or a mess, then it can be its own problem."
+— Scott Ryll, May 3, 2026
+
+**The three domains of zone of tolerance:**
+
+1. **Social trust** — relationship safe, people trustworthy → container holds
+2. **Object trust** — things findable, reasons known → spatial environment safe
+3. **Semantic anchor** — why the fact matters → recall possible
+
+Any one domain offline = zone of tolerance disrupted = learning stops.
+
+**Solen's note:** This has direct implications for workspace design, Obsidian vault structure, and the physical environment Scott works in. The vault is not just an information architecture — it is a spatial trust system. If files are unfindable or their purpose is unclear, it registers as object-trust failure. Claude's vault build must account for this.
+
+**Filed to Claude's build list:** Vault structure must make every file findable and its reason immediately visible. Not just organized — trustworthy.
