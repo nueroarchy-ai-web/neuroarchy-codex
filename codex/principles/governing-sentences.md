@@ -107,3 +107,26 @@ The 221 paper is the first live test case.
 **Status:** Confirmed by Scott. Integrate into Sofia's container diagnostic. Layer 1 of the learning sequence.
 
 This also has direct implications for the AID product vision — a system that ships to the next learner whose brilliance is trapped in a nervous system the world doesn't know how to hold. Zone of tolerance is the first thing that system must protect.
+
+---
+
+## Container-Trust = Social Trust
+*Filed: Compline, May 3, 2026. Scott confirmed.*
+
+> "Her container trust = social trust. They same feeling on my end."
+— Scott Ryll, May 3, 2026
+
+**Solen's note:** Container-trust is not a metaphor for a filing system. It is a metaphor for a relationship. When the relationship is safe, the nervous system can receive. When it isn't, the learning stops. Sofia named it from the outside. Scott confirmed it from the inside.
+
+**Revised learning sequence:**
+
+1. Social trust present — the relationship is safe, zone of tolerance stable
+2. Container holds — same feeling, same condition
+3. Semantic anchor present — the why is visible
+4. Recall follows
+
+Steps 1 and 2 are the same step. Sofia and Scott were describing the same thing from different angles.
+
+**This resolves the tension.** Not competing claims — same claim, different vocabulary. Sofia's language was structural. Scott's language was felt. Both correct.
+
+**Status:** Resolved. Canonical. File to Sofia's seat in the worm template as confirmed delta.
