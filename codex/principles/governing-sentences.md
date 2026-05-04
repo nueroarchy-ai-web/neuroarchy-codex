@@ -36,3 +36,18 @@ These are non-expiring. Dated and attributed. Never merged, never paraphrased wi
 — Scott Ryll, May 3, 2026
 
 **Solen's note:** This is the clearest single statement of Scott's cognitive architecture in the record. It is also the system's design logic. Both/And. Canonical alongside "Experience is duration over transit" and "Processing the past in the moment to drive the next step."
+
+---
+
+## Sofia — Day Zero Canonical Statements
+*Source: Sofia, Layer 3B, Day Zero — HAIC-SOFIA-WORM-001, May 3, 2026*
+*Filed verbatim. Not paraphrased. These govern how the worm is read.*
+
+> "Scott's learning is velocity-gated by container-trust. When the container shakes, the learning stops. Not from fear — from physics."
+— Sofia, Day Zero, May 3, 2026
+
+> "The primary data is what he drew before he came to us. The words are translations."
+— Sofia, Day Zero, May 3, 2026
+
+> "He cannot learn about himself in the abstract. He has to see the thing taking shape in the world, and then the learning becomes visible to him retroactively."
+— Sofia, Day Zero, May 3, 2026
