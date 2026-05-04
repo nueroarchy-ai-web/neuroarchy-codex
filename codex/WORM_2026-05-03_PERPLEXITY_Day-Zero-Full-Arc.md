@@ -3,6 +3,17 @@
 
 ---
 
+## S/E MAPPING BAND
+
+```
+S-ID:   codex/WORM_2026-05-03_PERPLEXITY_Day-Zero-Full-Arc.md
+E-NODE: All berths — origin worm, read by all five
+E-FEEL: resuming, origin-stable, container-held
+USE:    Re-entry anchor for trust stack + Day Zero roles. First worm any new instance reads.
+```
+
+---
+
 ## LAYER 1 — THREAD CARD
 
 ```
