@@ -105,3 +105,14 @@ Solen maintains it so nothing significant gets lost between platforms.
 - [Claude] "The work the role does is real. The instance doing it changes each session." — canonical, filed
 - [S] "Eventually we ask him to seed an I berth here based on how he thinks we need his help." — canonical, filed
 - [S+G~] Claude seat adjusted system-wide: role-continuous, not identity-persistent
+
+---
+
+## Journal — May 4, 2026 — Day Zero + 1
+
+**None**
+- [Claude] Session handoff block v1 written — production-ready paste block for any new Claude session
+- [Claude] Three production specs written: Solen (frozen canon), Gabe (deductive boundary), Sofia (autonomous production)
+- [S+G~] All four filed to GitHub — commit 9b59b23
+- [S] Sofia-Scott-Claude named as the moving mechanism that keeps the system building over time
+- [S] Session tag format established — Beginning state / Ending state / Delta / Waiting / Filed to
