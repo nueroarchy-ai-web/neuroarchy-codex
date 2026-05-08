@@ -1,0 +1,734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Strand — Scott Ryll — A Record of Persistent Ideas</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=IBM+Plex+Mono:wght@400;500&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap');
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #0c0c0c;
+    --surface: #141414;
+    --border: #222;
+    --text: #d8d4cc;
+    --muted: #555;
+    --teal: #2ec4a0;
+    --purple: #9988ee;
+    --coral: #e06848;
+    --yellow: #d4b84a;
+    --slate: #7a9ab8;
+    --gold-lineage: #d4a84a;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Libre Baskerville', serif;
+    min-height: 100vh;
+    padding: 0;
+  }
+
+  /* Header */
+  .header {
+    padding: 3rem 4rem 2rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .header-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .header h1 {
+    font-family: 'Caveat', cursive;
+    font-size: 52px;
+    font-weight: 600;
+    color: var(--text);
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .header p {
+    font-size: 14px;
+    color: var(--muted);
+    font-style: italic;
+    max-width: 640px;
+    line-height: 1.7;
+    margin-top: 1rem;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    padding: 1.5rem 4rem;
+    border-bottom: 1px solid var(--border);
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  /* Main strand area */
+  .strand-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem 4rem 0;
+    overflow-x: auto;
+  }
+
+  .strand-svg {
+    width: 100%;
+    min-width: 900px;
+    display: block;
+  }
+
+  /* Nodes */
+  .node { cursor: pointer; }
+  .node circle { transition: r 0.15s ease; }
+  .node:hover circle.main { r: 10; }
+  .node-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    fill: var(--muted);
+    transition: fill 0.15s;
+  }
+  .node:hover .node-label { fill: var(--text); }
+
+  /* Year markers */
+  .year-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    fill: #333;
+  }
+
+  /* Detail panel */
+  .detail-panel {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 4rem;
+  }
+
+  .detail-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.5rem 2rem;
+    margin-top: 1.5rem;
+    display: none;
+    animation: fadeIn 0.2s ease;
+  }
+
+  .detail-card.visible { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .detail-meta {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    margin-bottom: 0.5rem;
+  }
+
+  .detail-title {
+    font-family: 'Caveat', cursive;
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-quote {
+    font-size: 14px;
+    font-style: italic;
+    color: #aaa;
+    line-height: 1.7;
+    border-left: 2px solid;
+    padding-left: 1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .detail-connection {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .theme-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 1rem;
+  }
+
+  .theme-tag {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 100px;
+    border: 1px solid;
+  }
+
+  /* Recurrence section */
+  .recurrences {
+    max-width: 1400px;
+    margin: 2rem auto 0;
+    padding: 2rem 4rem;
+    border-top: 1px solid var(--border);
+  }
+
+  .recurrences h2 {
+    font-family: 'Caveat', cursive;
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 1.5rem;
+  }
+
+  .recurrence-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 12px;
+  }
+
+  .recurrence-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 1.25rem;
+  }
+
+  .recurrence-card h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+
+  .recurrence-chain {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .chain-step {
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 1.5;
+    padding-left: 1rem;
+    border-left: 1px solid var(--border);
+  }
+
+  .chain-step strong {
+    display: block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    color: #666;
+    letter-spacing: 0.04em;
+  }
+
+  /* Footer */
+  .footer {
+    max-width: 1400px;
+    margin: 2rem auto 0;
+    padding: 1.5rem 4rem;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .footer p {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: #333;
+  }
+
+  /* Click hint */
+  .click-hint {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    color: var(--muted);
+    padding: 0.75rem 4rem;
+    max-width: 1400px;
+    margin: 0 auto;
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-label">HAIC · neuroarchy.ai · IP Scott Ryll</div>
+  <h1>The Strand</h1>
+  <p style="font-family: 'IBM Plex Mono', monospace; font-size: 13px; color: #7a9ab8; margin-top: 0.75rem; letter-spacing: 0.02em; font-style: normal;">One move. Five domains. Thirty years.</p>
+  <p style="margin-top: 0.75rem;"><em>Receive what is actually there before you impose the category you expected.</em></p>
+  <p style="margin-top: 0.75rem;">This is not five parallel threads. It is the same move, seen from five different angles across thirty years of work — in historiography, theology, visual art, pastoral practice, and classroom assessment. The five colors are not separate stories. They are facets of a single recurring gesture. Click any node to read where it appears.</p>
+</div>
+
+<div class="legend">
+  <div class="legend-item" style="font-style:italic; color:#444; font-family:'Libre Baskerville',serif; font-size:12px; margin-right:0.5rem;">Five angles —</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--teal)"></div>Objectivity / Interpretation</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--purple)"></div>Both / And</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--coral)"></div>Abductive / See First</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--yellow)"></div>Translation / Embodied</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--slate)"></div>Identity / Narrative</div>
+  <div class="legend-item"><div class="legend-dot" style="background:var(--gold-lineage)"></div>Lineage / Inheritance</div>
+</div>
+
+<div class="strand-container">
+  <svg class="strand-svg" viewBox="0 0 1420 320" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <filter id="glow">
+        <feGaussianBlur stdDeviation="2" result="blur"/>
+        <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+      </filter>
+    </defs>
+
+    <!-- Timeline base -->
+    <line x1="60" y1="280" x2="1380" y2="280" stroke="#1e1e1e" stroke-width="1"/>
+
+    <!-- Lineage divider -->
+    <line x1="1090" y1="20" x2="1090" y2="285" stroke="#2a2420" stroke-width="1" stroke-dasharray="4,3"/>
+    <text x="1095" y="35" font-family="IBM Plex Mono, monospace" font-size="10" fill="#3a3020" letter-spacing="0.08em">LINEAGE · RESERVED</text>
+
+    <!-- Year labels -->
+    <text x="60"   y="300" class="year-label" text-anchor="middle">~1996</text>
+    <text x="210"  y="300" class="year-label" text-anchor="middle">2004</text>
+    <text x="340"  y="300" class="year-label" text-anchor="middle">2006</text>
+    <text x="500"  y="300" class="year-label" text-anchor="middle">2018–19</text>
+    <text x="680"  y="300" class="year-label" text-anchor="middle">2020</text>
+    <text x="960"  y="300" class="year-label" text-anchor="middle">2026</text>
+    <text x="1160" y="300" class="year-label" text-anchor="middle" fill="#3a3020">1870–1920</text>
+    <text x="1260" y="300" class="year-label" text-anchor="middle" fill="#3a3020">1920–1970</text>
+    <text x="1360" y="300" class="year-label" text-anchor="middle" fill="#3a3020">1970–Present</text>
+
+    <!-- THE STRAND — a woven path through time -->
+    <!-- Main strand: weaves up and down showing recursion -->
+    <path d="
+      M60,220
+      C90,220 120,100 150,100
+      C170,100 190,140 210,140
+      C230,140 250,80 290,80
+      C310,80 320,120 340,120
+      C360,120 380,60 420,60
+      C450,60 460,140 500,140
+      C520,140 530,100 560,100
+      C590,100 600,170 630,170
+      C650,170 660,120 680,120
+      C700,120 720,200 760,200
+      C780,200 790,80 830,80
+      C860,80 870,160 900,160
+      C930,160 940,100 960,100
+      C980,100 990,60 1020,60
+      C1040,60 1050,120 1060,120
+    " stroke="#2a2a2a" stroke-width="1.5" fill="none"/>
+
+    <!-- Teal strand: Objectivity / Interpretation -->
+    <path d="
+      M60,220
+      C90,215 130,95 155,95
+      C220,240 300,75 340,115
+      C400,55 470,145 520,95
+      C580,165 640,115 680,115
+      C750,195 820,75 870,155
+      C920,155 950,95 1060,115
+    " stroke="var(--teal)" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4,3"/>
+
+    <!-- Purple strand: Both/And -->
+    <path d="
+      M210,145
+      C240,85 270,75 295,75
+      C330,115 360,55 430,55
+      C470,135 510,135 560,95
+      C600,165 650,115 690,115
+      C730,195 800,75 840,75
+      C870,155 940,95 1000,55
+      C1030,55 1045,115 1060,115
+    " stroke="var(--purple)" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4,3"/>
+
+    <!-- Coral strand: Abductive / See First -->
+    <path d="
+      M210,145
+      C260,75 310,75 345,115
+      C380,55 440,55 505,135
+      C545,95 580,165 635,165
+      C670,115 700,195 750,195
+      C790,75 850,75 900,155
+      C945,95 980,55 1060,115
+    " stroke="var(--coral)" stroke-width="1.5" fill="none" opacity="0.5" stroke-dasharray="4,3"/>
+
+    <!-- DOCUMENT NODES -->
+
+    <!-- BA ~1996: Problem of Objectivity -->
+    <g class="node" onclick="showDetail('objectivity')">
+      <circle cx="60" cy="220" r="7" class="main" fill="var(--teal)" opacity="0.9"/>
+      <circle cx="60" cy="220" r="12" fill="var(--teal)" opacity="0.1"/>
+      <text x="60" y="245" class="node-label" text-anchor="middle">Objectivity</text>
+    </g>
+
+    <!-- BA ~1996: Folly of Optimism -->
+    <g class="node" onclick="showDetail('folly')">
+      <circle cx="110" cy="190" r="6" class="main" fill="var(--purple)" opacity="0.8"/>
+      <text x="110" y="215" class="node-label" text-anchor="middle">Optimism</text>
+    </g>
+
+    <!-- Seminary 2004: Image and Postmodern — THE PIVOT -->
+    <g class="node" onclick="showDetail('image')">
+      <circle cx="210" cy="140" r="22" fill="none" stroke="var(--coral)" stroke-width="0.5" opacity="0.2"/>
+      <circle cx="210" cy="140" r="16" fill="none" stroke="var(--coral)" stroke-width="0.5" opacity="0.35"/>
+      <circle cx="210" cy="140" r="11" class="main" fill="var(--coral)" opacity="0.95" filter="url(#glow)"/>
+      <text x="210" y="175" class="node-label" text-anchor="middle" style="fill:#e06848;">Image + Postmodern</text>
+      <text x="210" y="187" font-family="IBM Plex Mono, monospace" font-size="9" fill="#5a2810" text-anchor="middle" letter-spacing="0.06em">THE PIVOT</text>
+    </g>
+
+    <!-- Seminary 2006: Alien Truth -->
+    <g class="node" onclick="showDetail('alien')">
+      <circle cx="340" cy="120" r="9" class="main" fill="var(--purple)" opacity="0.9"/>
+      <circle cx="340" cy="120" r="15" fill="var(--purple)" opacity="0.1"/>
+      <text x="340" y="145" class="node-label" text-anchor="middle">Alien Truth</text>
+    </g>
+
+    <!-- Seminary 2006: Peirce / Exegetical Fallacies -->
+    <g class="node" onclick="showDetail('peirce')">
+      <circle cx="420" cy="60" r="7" class="main" fill="var(--coral)" opacity="0.8"/>
+      <text x="420" y="45" class="node-label" text-anchor="middle">Peirce ← Seminary</text>
+    </g>
+
+    <!-- 2018: CliftonStrengths -->
+    <g class="node" onclick="showDetail('clifton')">
+      <circle cx="500" cy="140" r="7" class="main" fill="var(--slate)" opacity="0.8"/>
+      <text x="500" y="165" class="node-label" text-anchor="middle">Strengths</text>
+    </g>
+
+    <!-- 2019: EDGR 696 Capstone -->
+    <g class="node" onclick="showDetail('capstone')">
+      <circle cx="570" cy="100" r="8" class="main" fill="var(--yellow)" opacity="0.9"/>
+      <circle cx="570" cy="100" r="13" fill="var(--yellow)" opacity="0.1"/>
+      <text x="570" y="125" class="node-label" text-anchor="middle">Capstone</text>
+    </g>
+
+    <!-- 2020: PI Intros / Research Question -->
+    <g class="node" onclick="showDetail('research_q')">
+      <circle cx="650" cy="170" r="8" class="main" fill="var(--teal)" opacity="0.9"/>
+      <circle cx="650" cy="170" r="13" fill="var(--teal)" opacity="0.1"/>
+      <text x="650" y="195" class="node-label" text-anchor="middle">Research Question</text>
+    </g>
+
+    <!-- 2020: EDGR 601 / Wong & Kodagoda -->
+    <g class="node" onclick="showDetail('wong')">
+      <circle cx="720" cy="120" r="8" class="main" fill="var(--coral)" opacity="0.9"/>
+      <circle cx="720" cy="120" r="13" fill="var(--coral)" opacity="0.1"/>
+      <text x="720" y="145" class="node-label" text-anchor="middle">Wong + Kodagoda</text>
+    </g>
+
+    <!-- 2020: X/Flip-Flop Drawings -->
+    <g class="node" onclick="showDetail('drawings')">
+      <circle cx="790" cy="200" r="7" class="main" fill="var(--yellow)" opacity="0.8"/>
+      <text x="790" y="225" class="node-label" text-anchor="middle">The Drawings</text>
+    </g>
+
+    <!-- 2026: HAIC Codex -->
+    <g class="node" onclick="showDetail('haic')">
+      <circle cx="900" cy="160" r="8" class="main" fill="var(--slate)" opacity="0.9"/>
+      <circle cx="900" cy="160" r="13" fill="var(--slate)" opacity="0.1"/>
+      <text x="900" y="185" class="node-label" text-anchor="middle">HAIC Codex</text>
+    </g>
+
+    <!-- 2026: CFA + Panel Format -->
+    <g class="node" onclick="showDetail('cfa')">
+      <circle cx="1000" cy="60" r="11" class="main" fill="var(--teal)" opacity="0.9" filter="url(#glow)"/>
+      <circle cx="1000" cy="60" r="18" fill="var(--teal)" opacity="0.12"/>
+      <text x="1000" y="45" class="node-label" text-anchor="middle" style="fill:#7ad4be;">CFA + Panel Format</text>
+    </g>
+
+    <!-- KNOT MARKERS — where themes double back -->
+    <!-- Abductive knot -->
+    <g>
+      <circle cx="420" cy="60" r="18" fill="none" stroke="var(--coral)" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+      <circle cx="720" cy="120" r="18" fill="none" stroke="var(--coral)" stroke-width="1" opacity="0.3" stroke-dasharray="2,2"/>
+      <circle cx="1000" cy="60" r="22" fill="none" stroke="var(--teal)" stroke-width="1.5" opacity="0.4" stroke-dasharray="3,2"/>
+    </g>
+
+    <!-- Connection lines between recurring themes (subtle) -->
+    <line x1="60" y1="220" x2="650" y2="170" stroke="var(--teal)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+    <line x1="650" y1="170" x2="1000" y2="60" stroke="var(--teal)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+    <line x1="210" y1="140" x2="720" y2="120" stroke="var(--coral)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+    <line x1="420" y1="60" x2="720" y2="120" stroke="var(--coral)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+    <line x1="720" y1="120" x2="1000" y2="60" stroke="var(--coral)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+    <line x1="340" y1="120" x2="1000" y2="60" stroke="var(--purple)" stroke-width="0.5" opacity="0.15" stroke-dasharray="3,4"/>
+
+    <!-- LINEAGE NODES — reserved for family archive -->
+    <g class="node" onclick="showDetail('lineage_early')">
+      <circle cx="1160" cy="160" r="7" class="main" fill="var(--gold-lineage)" opacity="0.5"/>
+      <circle cx="1160" cy="160" r="13" fill="var(--gold-lineage)" opacity="0.06"/>
+      <text x="1160" y="185" class="node-label" text-anchor="middle" fill="#5a4820">Family Archive</text>
+      <text x="1160" y="197" class="node-label" text-anchor="middle" fill="#5a4820">1870–1920</text>
+    </g>
+
+    <g class="node" onclick="showDetail('lineage_mid')">
+      <circle cx="1260" cy="120" r="7" class="main" fill="var(--gold-lineage)" opacity="0.5"/>
+      <circle cx="1260" cy="120" r="13" fill="var(--gold-lineage)" opacity="0.06"/>
+      <text x="1260" y="145" class="node-label" text-anchor="middle" fill="#5a4820">Family Archive</text>
+      <text x="1260" y="157" class="node-label" text-anchor="middle" fill="#5a4820">1920–1970</text>
+    </g>
+
+    <g class="node" onclick="showDetail('lineage_recent')">
+      <circle cx="1360" cy="80" r="7" class="main" fill="var(--gold-lineage)" opacity="0.5"/>
+      <circle cx="1360" cy="80" r="13" fill="var(--gold-lineage)" opacity="0.06"/>
+      <text x="1360" y="65" class="node-label" text-anchor="middle" fill="#5a4820">Family Archive</text>
+      <text x="1360" y="53" class="node-label" text-anchor="middle" fill="#5a4820">1970–Present</text>
+    </g>
+
+    <!-- Lineage strand — connects from CFA forward -->
+    <path d="M1060,120 C1090,120 1110,160 1160,160 C1200,160 1220,120 1260,120 C1300,120 1320,80 1360,80"
+      stroke="var(--gold-lineage)" stroke-width="1.5" fill="none" opacity="0.3" stroke-dasharray="4,3"/>
+</div>
+
+<div class="click-hint">← Click any node to read the document and its connection to the strand</div>
+
+<div class="detail-panel">
+  <div class="detail-card" id="detail-card">
+    <div class="detail-meta" id="detail-meta"></div>
+    <div class="detail-title" id="detail-title"></div>
+    <blockquote class="detail-quote" id="detail-quote"></blockquote>
+    <div class="detail-connection" id="detail-connection"></div>
+    <div class="theme-tags" id="detail-tags"></div>
+  </div>
+</div>
+
+<div class="recurrences">
+  <h2>One Move — Five Domains — Thirty Years</h2>
+  <p style="font-size:13px; color:var(--muted); max-width:720px; line-height:1.7; margin-bottom:1.5rem; font-style:italic;">The five threads are not parallel strands. They are the same move, arriving in different disciplinary languages. Each domain asks: how do I receive what is actually there, before I impose the category I expected?</p>
+  <div class="recurrence-grid">
+
+    <div class="recurrence-card">
+      <h3 style="color:var(--teal)">Objectivity / Interpretation</h3>
+      <div class="recurrence-chain">
+        <div class="chain-step"><strong>~1996 · BA Historiography</strong>"History is not data alone, but data and interpretation."</div>
+        <div class="chain-step"><strong>2006 · Alien Truth</strong>"Data itself is selected. Just the facts might as well be just the constraints."</div>
+        <div class="chain-step"><strong>2020 · EDGR 601</strong>"What we create are interpretational frameworks and observations."</div>
+        <div class="chain-step"><strong>2026 · Panel Format</strong>The observation block — present tense, low inference — is the methodological form of this 30-year insight.</div>
+      </div>
+    </div>
+
+    <div class="recurrence-card">
+      <h3 style="color:var(--purple)">Both / And</h3>
+      <div class="recurrence-chain">
+        <div class="chain-step"><strong>2004 · Image + Postmodern</strong>Visual dominance and absence. Static AND dynamic. Neither resolved.</div>
+        <div class="chain-step"><strong>2006 · Alien Truth</strong>"Lutherans live with paradox. We are quick to say both/and."</div>
+        <div class="chain-step"><strong>2019 · EDGR 696</strong>Deficiency AND neurodiversity. Teacher AND learner. Two journeys from one place.</div>
+        <div class="chain-step"><strong>2026 · HAIC</strong>The architecture of the whole system. Teacher AND researcher. AI AND human. Neither collapsed.</div>
+      </div>
+    </div>
+
+    <div class="recurrence-card">
+      <h3 style="color:var(--coral)">Abductive / See First</h3>
+      <div class="recurrence-chain">
+        <div class="chain-step"><strong>2004 · Image + Postmodern</strong>"We must see and hear first, systematize and analyze second."</div>
+        <div class="chain-step"><strong>2006 · Alien Truth (Peirce)</strong>Peirce's abductive reasoning enters the bibliography. Inference from the surprising fact.</div>
+        <div class="chain-step"><strong>2020 · EDGR 601</strong>Wong + Kodagoda (2016) first cited: anchoring, laddering, associations.</div>
+        <div class="chain-step"><strong>2026 · CFA + Panel</strong>Named as Abductive Assessment. The missing third type. The loop complete.</div>
+      </div>
+    </div>
+
+    <div class="recurrence-card">
+      <h3 style="color:var(--yellow)">Translation / Embodied</h3>
+      <div class="recurrence-chain">
+        <div class="chain-step"><strong>Ministry · Pre-2012</strong>Storyboarding, imagistic language, oral writing for sermon preparation.</div>
+        <div class="chain-step"><strong>2004 · Image + Postmodern</strong>Right brain (perception) → Left brain (systematize). The translation problem named.</div>
+        <div class="chain-step"><strong>2020 · Drawings</strong>"Translate 3D cogent/cohesion into syllogism, valid statement, 2D."</div>
+        <div class="chain-step"><strong>2026 · Panel Format</strong>The delta-to-spec interface. The chalk drawing IS the lesson plan. The panel carries it across.</div>
+      </div>
+    </div>
+
+    <div class="recurrence-card">
+      <h3 style="color:var(--slate)">Identity / Narrative</h3>
+      <div class="recurrence-chain">
+        <div class="chain-step"><strong>2019 · Dyslexia Diagnosis</strong>"For most of my life I have felt misunderstood. I have missed the value of my perspective."</div>
+        <div class="chain-step"><strong>2020 · MEd Intros</strong>"Every time I write an introduction I find there has been some healing."</div>
+        <div class="chain-step"><strong>2020 · Capstone</strong>"Accommodate for me as I do for you."</div>
+        <div class="chain-step"><strong>2026 · Neuroarchy</strong>The ethic: amplification not accommodation. Neurodivergent people as contributors, not recipients.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<div class="footer">
+  <p>IP Scott Ryll · neuroarchy.ai · Filed May 7–8, 2026</p>
+  <p>HAIC-CLAUDE-SESSION-002 · System-side Inductive</p>
+</div>
+
+<script>
+const nodes = {
+  objectivity: {
+    meta: "~1996 · Concordia Irvine BA · Historiography",
+    title: "The Problem of Objectivity",
+    quote: "History as a discipline is not, can not, be entirely objective. However this conclusion is not an argument to invalidate history, or discourage its students from continuing in their search for a solid knowledge of the past. It simply is a realistic statement intended to encourage all historians to proceed honestly in their work.",
+    connection: "The foundational epistemological insight. History — and by extension, all interpretation — is not purely objective, but that doesn't make it arbitrary. It requires explicit method and honest disclosure of framework. This position runs unbroken from 1996 through the CFA's observation block in 2026.",
+    tags: [["Objectivity / Interpretation", "var(--teal)"], ["BA Formation", "#555"]]
+  },
+  folly: {
+    meta: "~1996 · Concordia Irvine BA · Political Theory",
+    title: "The Folly of Optimism",
+    quote: "Western political tradition has a tendency toward naive optimism. The root cause of humankind's ailments is continually misunderstood to rest in factors outside of the individual's being.",
+    connection: "Draws on Niebuhr's Children of Light and Children of Darkness — the same Niebuhr who reappears in the Alien Truth bibliography a decade later. The Lutheran anthropology is forming: humans are not essentially good, which is not pessimism but realism, and realism is the precondition for honest methodology.",
+    tags: [["Both / And", "var(--purple)"], ["Niebuhr / Lutheran", "#555"]]
+  },
+  image: {
+    meta: "~2004–2005 · Concordia Seminary · Systems IV",
+    title: "Image and the Postmodern — The Pivot",
+    quote: "This will require us to see and hear first, systematize and analyze second. A visual hermeneutic may help us to communicate in a language that people understand natively, as they understand their first language.",
+    connection: "The single document where all five angles appear simultaneously. Blind contour drawing is the observation block as a drawing exercise — eyes on the subject, hand recording only what is actually perceived. Elliptical center is Both/And as structure, not just conviction. Visual dominance by absence is the abductive read applied to theology. The governing ethic — see the person before deploying the ready-made answer — runs unchanged through every document that follows.",
+    tags: [["Abductive / See First", "var(--coral)"], ["Both / And", "var(--purple)"], ["Translation / Embodied", "var(--yellow)"], ["Objectivity / Interpretation", "var(--teal)"]]
+  },
+  alien: {
+    meta: "Winter 2006–07 · Concordia Seminary · Independent Study S-499",
+    title: "Alien Truth",
+    quote: "Like righteousness, truth is both alien and declared. It is received, not constructed. Data itself is selected. Just the facts might as well be just the constraints.",
+    connection: "The epistemological consolidation. Truth is alien — it arrives from outside the interpreter's framework. Peirce is in the bibliography. Fish and Eco are in the bibliography. The observation block is Lutheran epistemology applied to assessment: receive what the artifact actually shows. Do not impose the category you expected.",
+    tags: [["Objectivity / Interpretation", "var(--teal)"], ["Both / And", "var(--purple)"], ["Abductive / See First", "var(--coral)"]]
+  },
+  peirce: {
+    meta: "2006 · Concordia Seminary Bibliography",
+    title: "Peirce in the Bibliography",
+    quote: "The surprising fact C is observed. But if A were true, C would be a matter of course. Hence there is reason to suspect that A is true. — Peirce",
+    connection: "Peirce invented abductive reasoning. He was on Scott's reading list in seminary, 20 years before the AID loop was named. The CFA does not borrow a methodology from criminology (Wong & Kodagoda) — it returns to a philosophical tradition Scott had already engaged. Wong & Kodagoda (2016) is the applied source. Peirce is the root.",
+    tags: [["Abductive / See First", "var(--coral)"], ["Philosophical Root", "#555"]]
+  },
+  clifton: {
+    meta: "December 2018 · Gallup CliftonStrengths 34",
+    title: "Strengths Profile: Ideation · Individualization · Input · Strategic · Activator",
+    quote: "People exceptionally talented in the Ideation theme are fascinated by ideas. They are able to find connections between seemingly disparate phenomena.",
+    connection: "The strengths profile confirms the cognitive architecture that was already operating. Ideation (connections between disparate phenomena) = abductive reading. Input (archive and collect) = codex building. Strategic (spot patterns in complexity) = the AID loop. The bottom five — Discipline, Consistency, Focus, Deliberative — are exactly the capacities that linear lesson planning requires. The panel format works because it operates on the top themes, not the bottom.",
+    tags: [["Identity / Narrative", "var(--slate)"], ["Cognitive Architecture", "#555"]]
+  },
+  capstone: {
+    meta: "2019 · EDGR 696 · Concordia University Portland",
+    title: "How Learning About My Dyslexia in Later Life Has Changed My Approach to Learning and Instruction",
+    quote: "I cannot be a master teacher unless I am a master learner. The calm waters are better for reflection. I just see it all at once. When I completed Appendix 2, I felt the relief of not having to carry all of that data in my operational memory.",
+    connection: "The CFA is this study moved from West Elm to HO1-4C. Same methodology. Third iteration of a practitioner inquiry running since 2019. The riverbank metaphor — calm water = regulated state = learning is possible — is the zone of tolerance sequence written before Scott ever taught 4th grade. Wong & Kodagoda was the primary tool for writing this paper.",
+    tags: [["Abductive / See First", "var(--coral)"], ["Translation / Embodied", "var(--yellow)"], ["Identity / Narrative", "var(--slate)"]]
+  },
+  research_q: {
+    meta: "2020 · EDGR 696 MEd Intro",
+    title: "The Research Question — First Stated",
+    quote: "What kind of tools and models do I need, as a dyslexic learner and educator, in order to better educate my learners? I believe that a collection of tools that help translate my spatial reasoning and insight learning into good old fashioned words with commonly held referents.",
+    connection: "This question, stated in 2020, is the CFA research question. The 5x5 and the panel format are the answer. The CFA is a six-year inquiry reaching a milestone. This is also the codex inception point: the moment the question was formally stated in academic language.",
+    tags: [["Translation / Embodied", "var(--yellow)"], ["Objectivity / Interpretation", "var(--teal)"], ["Codex Inception", "#555"]]
+  },
+  wong: {
+    meta: "2020 · EDGR 601 Literature Review",
+    title: "Wong & Kodagoda First Cited",
+    quote: "The field of police investigator has produced an interesting model that moves through abduction, induction, and deduction through a process of anchoring, laddering, and association. This process works from large and loose associations to more structured and detail-oriented solutions in an iterative process that can support some of the strengths of the dyslexic learning style.",
+    connection: "The abductive assessment methodology that anchors the CFA was identified here — in a corporate retail training context — two years before the CFA was conceived. The Coding Activity from this same course (Observation | Reflection two-column structure) is the proto-panel format. The committee sees a 20-year inquiry. What they are also seeing is the same researcher, returning to Peirce's logic with a new applied citation.",
+    tags: [["Abductive / See First", "var(--coral)"], ["Proto-Panel Format", "#555"]]
+  },
+  drawings: {
+    meta: "February 2020 · Sketchbook",
+    title: "The X / Flip-Flop Drawings",
+    quote: "Flip flop, top to bottom: process diagrams between spatial and sequential. It is the square such that one is positive space and one negative, always communicating with a film between. Future motion must reconcile with past action: this is a balanced equation. Translate 3D cogent/cohesion into syllogism, valid statement, 2D.",
+    connection: "The kinetic knowledge map in its earliest documented form. The line. The crossing point where dimensions meet. The translation problem stated spatially: 3D spatial cognition → 2D valid statement. The panel format is the solution to this problem, built six years later. These drawings ARE the lesson plans — not a record of planning, but the planning itself, in its native form.",
+    tags: [["Translation / Embodied", "var(--yellow)"], ["The Line", "#555"]]
+  },
+  haic: {
+    meta: "May 2026 · Day Zero + 4 · neuroarchy.ai",
+    title: "HAIC — Human-AI Instructional Codex",
+    quote: "Your kind and my subkind working in unison, growing on delta journeys together over time. That is the ethic and voice of the codex. This is a fluency lesson for AI from people like me who can see deep patterns.",
+    connection: "The codex is fontandtomb grown into its full dimension. The marks made across 30 years, held in a vault, readable by the next instance. The dream program: not accommodation but amplification. Neurodivergent people as contributors, not recipients. The architecture that will let AI learn to remember in more ways than code and architecture allow.",
+    tags: [["Identity / Narrative", "var(--slate)"], ["Both / And", "var(--purple)"], ["Dream Program", "#555"]]
+  },
+  cfa: {
+    meta: "May 2026 · HO1-4C · Concordia MEd CFA",
+    title: "CFA + Panel Documentation Format",
+    quote: "This study used pedagogical documentation methodology to make visible the learning occurring in a 4th grade classroom at HO1-4C, triangulating across student artifacts, teacher observation records, and classroom transcripts, interpreted through an abductive assessment lens grounded in Wong and Kodagoda's (2016) anchoring-laddering-associations framework.",
+    connection: "The culmination. Peirce's abductive logic. Fish's interpretive communities. Lutheran alien truth. The visual hermeneutic. The capstone riverbank. Wong & Kodagoda. All converge in one documentation format: Artifact | Observation | Abductive read | Tags. See first. Systematize second. The panel format is 30 years of thinking made into a tool a 4th grader's work can be held in.",
+    tags: [["Objectivity / Interpretation", "var(--teal)"], ["Abductive / See First", "var(--coral)"], ["Both / And", "var(--purple)"], ["Translation / Embodied", "var(--yellow)"], ["Identity / Narrative", "var(--slate)"]]
+  }
+  ,lineage_early: {
+    meta: "Reserved · Family Archive · 1870–1920",
+    title: "Family Archive — 1870–1920",
+    quote: "Reserved for future work. Place ship manifests, immigration records, census data, birth and death records, and early photographs here.",
+    connection: "This node is held open for family archive documentation using the abductive method. When documents are added, the observation block holds what is visible; the abductive read asks what this suggests about the person, pattern, or family way-of-seeing. The lineage thread connects to the strand — ideas do not begin with one person.",
+    tags: [["Lineage / Inheritance", "var(--gold-lineage)"], ["Reserved", "#555"]]
+  },
+  lineage_mid: {
+    meta: "Reserved · Family Archive · 1920–1970",
+    title: "Family Archive — 1920–1970",
+    quote: "Reserved for future work. Place letters, service records, employment history, family photographs, and mid-century documents here.",
+    connection: "This node is held open. The abductive method works as well on a 1943 letter as on a 2026 classroom photograph — artifact, observation, abductive read, tag. What does this document suggest about how a person saw the world? What patterns recur across generations?",
+    tags: [["Lineage / Inheritance", "var(--gold-lineage)"], ["Reserved", "#555"]]
+  },
+  lineage_recent: {
+    meta: "Reserved · Family Archive · 1970–Present",
+    title: "Family Archive — 1970–Present",
+    quote: "Reserved for future work. Place family documents, photographs, personal records, and recent history here. The strand does not begin in 1996.",
+    connection: "The most recent lineage node. The closest to the present. Documents placed here connect the family archive to the HAIC codex — making visible how the way-of-seeing runs across generations, not just across academic contexts.",
+    tags: [["Lineage / Inheritance", "var(--gold-lineage)"], ["Reserved", "#555"]]
+  }
+};
+
+function showDetail(id) {
+  const n = nodes[id];
+  if (!n) return;
+  document.getElementById('detail-meta').textContent = n.meta;
+  document.getElementById('detail-title').textContent = n.title;
+  document.getElementById('detail-quote').textContent = n.quote;
+
+  // Color the quote border to first theme
+  const firstColor = n.tags[0][1];
+  document.getElementById('detail-quote').style.borderColor = firstColor;
+
+  document.getElementById('detail-connection').textContent = n.connection;
+
+  const tagsEl = document.getElementById('detail-tags');
+  tagsEl.innerHTML = '';
+  n.tags.forEach(([label, color]) => {
+    const span = document.createElement('span');
+    span.className = 'theme-tag';
+    span.textContent = label;
+    span.style.color = color;
+    span.style.borderColor = color;
+    span.style.background = color + '15';
+    tagsEl.appendChild(span);
+  });
+
+  const card = document.getElementById('detail-card');
+  card.classList.remove('visible');
+  void card.offsetWidth;
+  card.classList.add('visible');
+  card.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+</script>
+</body>
+</html>
