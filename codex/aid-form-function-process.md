@@ -64,3 +64,19 @@ This is the cognitive signature. The muse enters, the design absorbs it, the out
 
 This is also why the Strand works as a map: it does not show a career. It shows a mind that has always worked this way — receiving from multiple domains simultaneously and producing something none of them contain alone.
 
+
+---
+
+## Correction to Muses Note
+*[S] correction May 8, 2026, 12:07pm PDT*
+
+Precision matters. The muses are not all equal in type:
+
+- **Liturgy and semiotics** — actual formal studies. Not adjacent. Core curriculum, seminary level.
+- **Hofstadter** — BA-level study. Formal, credited, part of the undergraduate formation.
+- **Thermal mass / sustainable design** — personal interest, not study. Scott wants to build a tiny home someday. It informs spatial intuition but is not an academic credential or even a completed study.
+
+The Strand should reflect this accurately. Liturgy and semiotics are inside the formal arc. Thermal mass is a muse in the truest sense — a desire, an aspiration, a way of thinking about containers and regulation that has not yet been formally pursued.
+
+This distinction matters for the visible layer and for what is claimed in any academic context.
+
