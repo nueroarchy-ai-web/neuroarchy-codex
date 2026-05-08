@@ -22,7 +22,7 @@ Scott's native language for the same loop: **Form / Function / Process**
 
 ## Why this matters
 
-This is not a rebranding of AID. It is AID expressed in the language native to a spatial thinker trained across architecture, theology, and classroom instruction.
+This is not a rebranding of AID. It is AID expressed in the language native to a spatial thinker whose native reasoning runs across visual systems, theology, and classroom instruction.
 
 - A architect reads **Form** before function.
 - A theologian asks what something **does** (its function in the life of the community) before writing the rubric.

@@ -38,7 +38,7 @@ Scott named this morning — his native instantiation of the AID loop is:
 | Inductive | **Function** — what does it do across time? What pattern emerges? |
 | Deductive | **Process** — what is the fair test? The designed demonstration? |
 
-This is not a rebranding. It is the same loop in the language native to a spatial thinker trained across architecture, theology, and classroom instruction. An architect reads Form before function. A theologian asks what something does before writing the rubric. A teacher designs the Process after reading the learner.
+This is not a rebranding. It is the same loop in the language native to a spatial thinker whose native reasoning runs across visual systems, theology, and classroom instruction. An architect reads Form before function. A theologian asks what something does before writing the rubric. A teacher designs the Process after reading the learner.
 
 Hold this when you work on CFA language with Scott. "Proof → demonstration" (which Gabe flagged as a required reframe) is the Process term clarified. The CFA demonstrates — it does not prove. That distinction is now grounded in Scott's own cognitive vocabulary, not just methodological caution.
 
