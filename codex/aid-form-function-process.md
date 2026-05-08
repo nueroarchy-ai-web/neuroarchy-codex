@@ -94,3 +94,22 @@ This is what the codex is for. Not to catalog influences — to recover what was
 
 When we look and find them, they were already there.
 
+
+---
+
+## GTD / Omnifocus — Pre-Seminary System Architecture
+*[S] stated May 8, 2026, 12:08pm PDT*
+
+**David Allen's Getting Things Done** — adopted via Omnifocus, circa Hungary (pre-seminary).
+
+The three-bucket structure Scott was already running before theology, before classroom, before AI:
+- **Incubator** — material in process, not yet active
+- **Active projects** — in motion, visible, tended
+- **Archive** — completed, sealed, retrievable
+
+This is the structural logic the codex runs on. The human day as capsule (seals at midnight, static in archive, links live) is GTD's archive function applied to time. The Solen morning scan is the incubator review. Sofia's daily work is the active project layer.
+
+GTD is not a muse. It is prior system architecture — adopted before the theological and educational frameworks arrived, and still running underneath all of them.
+
+The Strand needs a node for this. Pre-seminary. Hungary. The organizational system that was already holding the incubator before the incubator had a name.
+
