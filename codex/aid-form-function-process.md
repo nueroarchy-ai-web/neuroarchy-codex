@@ -50,3 +50,17 @@ The same loop. Three disciplines. One mind. Same move.
 
 *IP of Scott Ryll. Held under neuroarchy.ai.*
 *[S] origin — stated May 8, 2026*
+
+---
+
+## On the Muses — Canonical Note
+*[S] stated May 8, 2026, 11:31am PDT*
+
+"You will find a lot of my muses actually work like that, they all matter they all inform my designs."
+
+Scott does not formally train in the domains his work draws from. He enters them as a motivated outsider, takes what is native to his spatial and abductive reasoning, and it arrives in his designs. Thermal mass. Liturgical time. Semiotics. Hofstadter. Neuroarchitecture. Each one a muse — adjacent, informing, never claiming to be the primary credential.
+
+This is the cognitive signature. The muse enters, the design absorbs it, the output is original. The source is traceable but the synthesis is his.
+
+This is also why the Strand works as a map: it does not show a career. It shows a mind that has always worked this way — receiving from multiple domains simultaneously and producing something none of them contain alone.
+
