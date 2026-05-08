@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lesson Plan — Scott Ryll</title>
+<style>
+  /* OpenDyslexic via CDN not available — using best dyslexia-friendly stack:
+     - Larger x-height
+     - Generous letter-spacing
+     - Strong weight contrast
+     - No italic body text
+     - High contrast, warm background (not pure white)
+  */
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --bg: #faf8f4;
+    --surface: #ffffff;
+    --border: #e0dbd2;
+    --border-strong: #c8c0b4;
+    --text: #1a1714;
+    --muted: #7a7268;
+    --teal: #1a7a60;
+    --teal-light: #e8f5f0;
+    --coral: #c04a28;
+    --coral-light: #fdf0ec;
+    --purple: #5a48b0;
+    --purple-light: #f0eef8;
+    --gold: #a07820;
+    --gold-light: #fdf6e8;
+    --draw-bg: #f5f2ec;
+  }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Verdana', 'Trebuchet MS', sans-serif;
+    /* Verdana: large x-height, wide letterforms, excellent dyslexia readability */
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    padding: 2rem 1.5rem 4rem;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  /* Typography scale — generous, clear */
+  h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.2;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  h2 {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 1rem;
+  }
+
+  /* Page header */
+  .page-header {
+    padding-bottom: 1.25rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 2px solid var(--border-strong);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .header-meta {
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.04em;
+  }
+
+  .header-meta input {
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--border);
+    font-size: 13px;
+    font-family: inherit;
+    color: var(--text);
+    letter-spacing: 0.04em;
+    padding: 2px 4px;
+    width: 120px;
+    outline: none;
+  }
+
+  .header-meta input:focus { border-bottom-color: var(--teal); }
+
+  /* Section blocks */
+  .section {
+    margin-bottom: 1.5rem;
+    border: 1.5px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+
+  .section-header {
+    padding: 10px 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .section-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    flex: 1;
+  }
+
+  .section-hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+  }
+
+  .toggle-icon {
+    font-size: 14px;
+    color: var(--muted);
+    transition: transform 0.2s;
+  }
+
+  .toggle-icon.open { transform: rotate(180deg); }
+
+  .section-body {
+    padding: 1rem 1.25rem 1.25rem;
+    border-top: 1px solid var(--border);
+    display: block;
+  }
+
+  .section-body.collapsed { display: none; }
+
+  /* Section color themes */
+  .s-draw .section-header { background: var(--draw-bg); }
+  .s-draw .section-number { background: #d8d0c4; color: #5a5248; }
+  .s-draw .section-title { color: #5a5248; }
+
+  .s-summary .section-header { background: var(--teal-light); }
+  .s-summary .section-number { background: var(--teal); color: white; }
+  .s-summary .section-title { color: var(--teal); }
+
+  .s-boundaries .section-header { background: var(--coral-light); }
+  .s-boundaries .section-number { background: var(--coral); color: white; }
+  .s-boundaries .section-title { color: var(--coral); }
+
+  .s-aid .section-header { background: var(--purple-light); }
+  .s-aid .section-number { background: var(--purple); color: white; }
+  .s-aid .section-title { color: var(--purple); }
+
+  .s-filter .section-header { background: var(--gold-light); }
+  .s-filter .section-number { background: var(--gold); color: white; }
+  .s-filter .section-title { color: var(--gold); }
+
+  /* Form fields — dyslexia-optimized */
+  .field { margin-bottom: 1.25rem; }
+  .field:last-child { margin-bottom: 0; }
+
+  label {
+    display: block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  textarea,
+  select {
+    width: 100%;
+    font-family: 'Verdana', 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    line-height: 1.8;
+    letter-spacing: 0.02em;
+    color: var(--text);
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    outline: none;
+    transition: border-color 0.15s;
+    resize: vertical;
+  }
+
+  input[type="text"]:focus,
+  textarea:focus,
+  select:focus { border-color: var(--teal); }
+
+  textarea { min-height: 80px; }
+
+  /* Draw area */
+  .draw-area {
+    width: 100%;
+    min-height: 200px;
+    background: var(--surface);
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
+    touch-action: none;
+  }
+
+  .draw-area canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .draw-controls {
+    display: flex;
+    gap: 8px;
+    margin-top: 8px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .draw-btn {
+    padding: 6px 14px;
+    font-size: 13px;
+    font-family: inherit;
+    font-weight: 700;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    color: var(--muted);
+    cursor: pointer;
+    letter-spacing: 0.04em;
+    transition: all 0.12s;
+  }
+
+  .draw-btn:hover { border-color: var(--border-strong); color: var(--text); }
+
+  .color-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.12s;
+  }
+
+  .color-btn.active { border-color: var(--text); }
+
+  .size-slider {
+    -webkit-appearance: none;
+    height: 4px;
+    background: var(--border);
+    border-radius: 2px;
+    outline: none;
+    width: 80px;
+  }
+
+  .size-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--teal);
+    cursor: pointer;
+  }
+
+  .draw-hint {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 6px;
+  }
+
+  /* DOK pills */
+  .dok-row {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .dok-pill {
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: inherit;
+    border: 1.5px solid var(--border);
+    border-radius: 6px;
+    background: var(--surface);
+    cursor: pointer;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    transition: all 0.12s;
+    flex: 1;
+    text-align: center;
+  }
+
+  .dok-pill:hover { border-color: var(--border-strong); color: var(--text); }
+  .dok-pill.active-1 { background: #e8f5f0; color: var(--teal); border-color: var(--teal); }
+  .dok-pill.active-2 { background: #f0eef8; color: var(--purple); border-color: var(--purple); }
+  .dok-pill.active-3 { background: #fdf0ec; color: var(--coral); border-color: var(--coral); }
+  .dok-pill.active-4 { background: #1a1714; color: #faf8f4; border-color: #1a1714; }
+
+  /* AID × 5x5 table */
+  .aid-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .aid-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 1.5px solid var(--border);
+  }
+
+  .aid-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    line-height: 1.6;
+  }
+
+  .aid-table tr:last-child td { border-bottom: none; }
+
+  .aid-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .badge-a { background: var(--teal-light); color: var(--teal); }
+  .badge-i { background: var(--purple-light); color: var(--purple); }
+  .badge-d { background: var(--coral-light); color: var(--coral); }
+
+  /* Export button */
+  .export-bar {
+    margin-top: 2rem;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .export-btn {
+    flex: 1;
+    padding: 14px;
+    font-size: 15px;
+    font-family: inherit;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    border: 1.5px solid var(--border-strong);
+    border-radius: 8px;
+    background: var(--surface);
+    color: var(--text);
+    cursor: pointer;
+    transition: all 0.12s;
+  }
+
+  .export-btn:hover { background: var(--teal); color: white; border-color: var(--teal); }
+  .export-btn.copied { background: var(--teal); color: white; border-color: var(--teal); }
+
+  /* Responsive */
+  @media (max-width: 600px) {
+    body { padding: 1rem 1rem 3rem; }
+    h1 { font-size: 22px; }
+    .dok-pill { font-size: 13px; padding: 7px 10px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div>
+    <h1>Lesson Plan</h1>
+    <div class="header-meta" style="margin-top:6px;">Scott Ryll · HO1-4C · neuroarchy.ai</div>
+  </div>
+  <div class="header-meta" style="display:flex; gap:1rem; flex-wrap:wrap;">
+    <div>Date <input type="text" id="h-date" placeholder="May 8, 2026" style="width:130px;"/></div>
+    <div>Unit <input type="text" id="h-unit" placeholder="Unit 6" style="width:80px;"/></div>
+    <div>Week <input type="text" id="h-week" placeholder="3" style="width:50px;"/></div>
+  </div>
+</div>
+
+<!-- SECTION 1: DRAW -->
+<div class="section s-draw">
+  <div class="section-header" onclick="toggle('draw')">
+    <div class="section-number">1</div>
+    <div class="section-title">Draw</div>
+    <div class="section-hint">Sketch the lesson shape before anything else</div>
+    <div class="toggle-icon open" id="icon-draw">▼</div>
+  </div>
+  <div class="section-body" id="body-draw">
+    <div class="field">
+      <label>Lesson sketch</label>
+      <div class="draw-area" id="draw-area">
+        <canvas id="draw-canvas"></canvas>
+      </div>
+      <div class="draw-controls">
+        <button class="draw-btn" onclick="clearCanvas()">Clear</button>
+        <div class="color-btn active" style="background:#1a1714;" onclick="setColor('#1a1714')" id="col-black" title="Black"></div>
+        <div class="color-btn" style="background:#1a7a60;" onclick="setColor('#1a7a60')" id="col-teal" title="Teal"></div>
+        <div class="color-btn" style="background:#c04a28;" onclick="setColor('#c04a28')" id="col-coral" title="Coral"></div>
+        <div class="color-btn" style="background:#5a48b0;" onclick="setColor('#5a48b0')" id="col-purple" title="Purple"></div>
+        <div class="color-btn" style="background:#a07820;" onclick="setColor('#a07820')" id="col-gold" title="Gold"></div>
+        <input type="range" class="size-slider" id="brush-size" min="1" max="16" value="3" title="Brush size"/>
+      </div>
+      <div class="draw-hint">Draw freely — this is your native planning space. The sketch is the thinking.</div>
+    </div>
+    <div class="field">
+      <label>Draw annotation (optional)</label>
+      <textarea id="draw-note" placeholder="Name what you drew if you want to — one sentence is enough..."></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 2: SUMMARY -->
+<div class="section s-summary">
+  <div class="section-header" onclick="toggle('summary')">
+    <div class="section-number">2</div>
+    <div class="section-title">Summary</div>
+    <div class="section-hint">What is this lesson, in your words</div>
+    <div class="toggle-icon open" id="icon-summary">▼</div>
+  </div>
+  <div class="section-body" id="body-summary">
+    <div class="field">
+      <label>Learning objective</label>
+      <input type="text" id="objective" placeholder="I can..." />
+    </div>
+    <div class="field">
+      <label>Central idea / big question</label>
+      <textarea id="central-idea" placeholder="The overarching idea or inquiry question driving this lesson..." style="min-height:60px;"></textarea>
+    </div>
+    <div class="field">
+      <label>What students will do</label>
+      <textarea id="student-actions" placeholder="In simple terms — what are students actually doing in this lesson?"></textarea>
+    </div>
+    <div class="field">
+      <label>What you are watching for (Form)</label>
+      <textarea id="form-watch" placeholder="What shape are you looking for before you name it? What does success look like as a pattern, not a score?" style="min-height:60px;"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: HARD BOUNDARIES -->
+<div class="section s-boundaries">
+  <div class="section-header" onclick="toggle('boundaries')">
+    <div class="section-number">3</div>
+    <div class="section-title">Hard Boundaries</div>
+    <div class="section-hint">Standards, CalTPA, CSTP — the frame you are working inside</div>
+    <div class="toggle-icon open" id="icon-boundaries">▼</div>
+  </div>
+  <div class="section-body" id="body-boundaries">
+    <div class="field">
+      <label>CEL / Content standard</label>
+      <input type="text" id="standard" placeholder="e.g. CEL.4.RI.2, CEL.4.W.2" />
+    </div>
+    <div class="field">
+      <label>CalTPA focus</label>
+      <input type="text" id="caltpa" placeholder="e.g. Task 3 — Assessment" />
+    </div>
+    <div class="field">
+      <label>CSTP element</label>
+      <input type="text" id="cstp" placeholder="e.g. CSTP 4.1 — Using instructional time effectively" />
+    </div>
+    <div class="field">
+      <label>IB lines of inquiry</label>
+      <textarea id="ib-loi" placeholder="Paste your lines of inquiry here — these drive the abductive read in documentation panels..." style="min-height:70px;"></textarea>
+    </div>
+    <div class="field">
+      <label>Webb's DOK target</label>
+      <div class="dok-row">
+        <button class="dok-pill" id="dok-1" onclick="setDOK(1)">1 — Recall</button>
+        <button class="dok-pill" id="dok-2" onclick="setDOK(2)">2 — Skill / Concept</button>
+        <button class="dok-pill" id="dok-3" onclick="setDOK(3)">3 — Strategic Thinking</button>
+        <button class="dok-pill" id="dok-4" onclick="setDOK(4)">4 — Extended Thinking</button>
+      </div>
+    </div>
+    <div class="field">
+      <label>5x5 stage focus</label>
+      <select id="fivex5">
+        <option value="">— Select stage —</option>
+        <option value="1">Stage 1 — Framing the Learning</option>
+        <option value="2">Stage 2 — Getting Ready</option>
+        <option value="3">Stage 3 — Creating Mental Engagement</option>
+        <option value="4">Stage 4 — Getting Inside Students' Heads</option>
+        <option value="5">Stage 5 — Consolidating and Anchoring</option>
+        <option value="all">All Stages</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: AID LOOP -->
+<div class="section s-aid">
+  <div class="section-header" onclick="toggle('aid')">
+    <div class="section-number">4</div>
+    <div class="section-title">AID Loop — Form · Function · Process</div>
+    <div class="section-hint">How you will read and document the learning</div>
+    <div class="toggle-icon" id="icon-aid">▼</div>
+  </div>
+  <div class="section-body collapsed" id="body-aid">
+    <table class="aid-table">
+      <thead>
+        <tr>
+          <th>Stage</th>
+          <th>AID / Form</th>
+          <th>What you are doing</th>
+          <th>Your note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Stage 1 — Framing</td>
+          <td><span class="aid-badge badge-a">A · Form</span></td>
+          <td>What is the shape of this before you name it?</td>
+          <td><input type="text" placeholder="Note..." style="min-height:auto; padding:6px 8px; font-size:14px;"/></td>
+        </tr>
+        <tr>
+          <td>Stage 2 — Getting Ready</td>
+          <td><span class="aid-badge badge-i">I · Function</span></td>
+          <td>What pattern are you activating from prior learning?</td>
+          <td><input type="text" placeholder="Note..." style="min-height:auto; padding:6px 8px; font-size:14px;"/></td>
+        </tr>
+        <tr>
+          <td>Stage 3 — Mental Engagement</td>
+          <td><span class="aid-badge badge-d">D · Process</span></td>
+          <td>What is the fair demonstration of the learning?</td>
+          <td><input type="text" placeholder="Note..." style="min-height:auto; padding:6px 8px; font-size:14px;"/></td>
+        </tr>
+        <tr>
+          <td>Stage 4 — Inside Students' Heads</td>
+          <td><span class="aid-badge badge-a">A · Form</span></td>
+          <td>What does the artifact suggest about the learner's state?</td>
+          <td><input type="text" placeholder="Note..." style="min-height:auto; padding:6px 8px; font-size:14px;"/></td>
+        </tr>
+        <tr>
+          <td>Stage 5 — Consolidating</td>
+          <td><span class="aid-badge badge-i">I · Function</span></td>
+          <td>What pattern has landed? What can they now carry?</td>
+          <td><input type="text" placeholder="Note..." style="min-height:auto; padding:6px 8px; font-size:14px;"/></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- SECTION 5: FILTER / SETTINGS -->
+<div class="section s-filter">
+  <div class="section-header" onclick="toggle('filter')">
+    <div class="section-number">5</div>
+    <div class="section-title">Filter / Settings</div>
+    <div class="section-hint">Stamps every documentation panel from this session</div>
+    <div class="toggle-icon" id="icon-filter">▼</div>
+  </div>
+  <div class="section-body collapsed" id="body-filter">
+    <div class="field">
+      <label>Class code</label>
+      <input type="text" id="class-code" placeholder="HO1-4C" />
+    </div>
+    <div class="field">
+      <label>School year</label>
+      <input type="text" id="school-year" placeholder="2025–2026" />
+    </div>
+    <div class="field">
+      <label>Student data protocol</label>
+      <input type="text" id="student-protocol" placeholder="Student number + classroom code — no names" />
+    </div>
+    <div class="field">
+      <label>Notes for AI / next instance</label>
+      <textarea id="ai-notes" placeholder="Anything the next instance or team member needs to know before reading the panels from this session..." style="min-height:80px;"></textarea>
+    </div>
+  </div>
+</div>
+
+<!-- EXPORT -->
+<div class="export-bar">
+  <button class="export-btn" id="export-btn" onclick="exportPlan()">Copy lesson plan as text ↗</button>
+</div>
+
+<script>
+  // --- Toggle sections ---
+  function toggle(id) {
+    const body = document.getElementById('body-' + id);
+    const icon = document.getElementById('icon-' + id);
+    const collapsed = body.classList.contains('collapsed');
+    body.classList.toggle('collapsed', !collapsed);
+    icon.classList.toggle('open', !collapsed);
+  }
+
+  // --- Canvas drawing ---
+  const canvas = document.getElementById('draw-canvas');
+  const ctx = canvas.getContext('2d');
+  let drawing = false;
+  let currentColor = '#1a1714';
+  let lastX = 0, lastY = 0;
+
+  function resizeCanvas() {
+    const area = document.getElementById('draw-area');
+    const dpr = window.devicePixelRatio || 1;
+    const w = area.offsetWidth;
+    const h = 220;
+    area.style.height = h + 'px';
+    canvas.width = w * dpr;
+    canvas.height = h * dpr;
+    canvas.style.width = w + 'px';
+    canvas.style.height = h + 'px';
+    ctx.scale(dpr, dpr);
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+  }
+
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  function getPos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const touch = e.touches ? e.touches[0] : e;
+    return [touch.clientX - rect.left, touch.clientY - rect.top];
+  }
+
+  canvas.addEventListener('mousedown', e => { drawing = true; [lastX, lastY] = getPos(e); });
+  canvas.addEventListener('mousemove', e => {
+    if (!drawing) return;
+    const [x, y] = getPos(e);
+    const size = parseInt(document.getElementById('brush-size').value);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = size;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+  });
+  canvas.addEventListener('mouseup', () => drawing = false);
+  canvas.addEventListener('mouseleave', () => drawing = false);
+
+  canvas.addEventListener('touchstart', e => { e.preventDefault(); drawing = true; [lastX, lastY] = getPos(e); });
+  canvas.addEventListener('touchmove', e => {
+    e.preventDefault();
+    if (!drawing) return;
+    const [x, y] = getPos(e);
+    const size = parseInt(document.getElementById('brush-size').value);
+    ctx.strokeStyle = currentColor;
+    ctx.lineWidth = size;
+    ctx.beginPath();
+    ctx.moveTo(lastX, lastY);
+    ctx.lineTo(x, y);
+    ctx.stroke();
+    [lastX, lastY] = [x, y];
+  });
+  canvas.addEventListener('touchend', () => drawing = false);
+
+  function clearCanvas() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function setColor(c) {
+    currentColor = c;
+    document.querySelectorAll('.color-btn').forEach(b => b.classList.remove('active'));
+    const map = { '#1a1714': 'col-black', '#1a7a60': 'col-teal', '#c04a28': 'col-coral', '#5a48b0': 'col-purple', '#a07820': 'col-gold' };
+    if (map[c]) document.getElementById(map[c]).classList.add('active');
+  }
+
+  // --- DOK selection ---
+  let currentDOK = null;
+  function setDOK(n) {
+    [1,2,3,4].forEach(i => {
+      document.getElementById('dok-' + i).className = 'dok-pill';
+    });
+    document.getElementById('dok-' + n).classList.add('active-' + n);
+    currentDOK = n;
+  }
+
+  // --- Export ---
+  function exportPlan() {
+    const date = document.getElementById('h-date').value || '[date]';
+    const unit = document.getElementById('h-unit').value || '[unit]';
+    const week = document.getElementById('h-week').value || '[week]';
+    const obj = document.getElementById('objective').value || '[objective]';
+    const central = document.getElementById('central-idea').value || '[central idea]';
+    const actions = document.getElementById('student-actions').value || '[student actions]';
+    const form = document.getElementById('form-watch').value || '[form watch]';
+    const standard = document.getElementById('standard').value || '[standard]';
+    const caltpa = document.getElementById('caltpa').value || '[CalTPA]';
+    const cstp = document.getElementById('cstp').value || '[CSTP]';
+    const loi = document.getElementById('ib-loi').value || '[lines of inquiry]';
+    const dok = currentDOK ? `DOK ${currentDOK}` : '[DOK not set]';
+    const stage = document.getElementById('fivex5').value || '[stage not set]';
+    const drawNote = document.getElementById('draw-note').value || '';
+    const aiNotes = document.getElementById('ai-notes').value || '';
+
+    const text = [
+      `LESSON PLAN · ${date} · ${unit} · Week ${week}`,
+      `Scott Ryll · HO1-4C · neuroarchy.ai`,
+      ``,
+      `DRAW`,
+      drawNote ? `Sketch note: ${drawNote}` : `[sketch on file]`,
+      ``,
+      `SUMMARY`,
+      `Objective: ${obj}`,
+      `Central idea: ${central}`,
+      `Student actions: ${actions}`,
+      `Form — watching for: ${form}`,
+      ``,
+      `HARD BOUNDARIES`,
+      `Standard: ${standard}`,
+      `CalTPA: ${caltpa}`,
+      `CSTP: ${cstp}`,
+      `IB Lines of inquiry: ${loi}`,
+      `DOK target: ${dok}`,
+      `5x5 stage: ${stage}`,
+      ``,
+      aiNotes ? `AI NOTES\n${aiNotes}` : ''
+    ].filter(Boolean).join('\n');
+
+    navigator.clipboard.writeText(text).then(() => {
+      const btn = document.getElementById('export-btn');
+      btn.textContent = 'Copied ✓';
+      btn.classList.add('copied');
+      setTimeout(() => {
+        btn.textContent = 'Copy lesson plan as text ↗';
+        btn.classList.remove('copied');
+      }, 2500);
+    });
+  }
+</script>
+</body>
+</html>
