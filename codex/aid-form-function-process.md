@@ -80,3 +80,17 @@ The Strand should reflect this accurately. Liturgy and semiotics are inside the 
 
 This distinction matters for the visible layer and for what is claimed in any academic context.
 
+
+---
+
+## On the Nature of Influences — Canonical Correction
+*[S] stated May 8, 2026, 12:08pm PDT*
+
+"More than muses, but sometimes in the incubator or sometimes forgotten until we look and find them."
+
+The word "muse" understates it. These are not inspirations that float past. They are active materials — sometimes in the incubator (working, not yet visible), sometimes dormant until the record surfaces them.
+
+This is what the codex is for. Not to catalog influences — to recover what was already working that had no container to live in yet. The thermal mass interest is not a muse. It is in the incubator. The Strand does not show the full contents of the incubator — only what has surfaced so far.
+
+When we look and find them, they were already there.
+
