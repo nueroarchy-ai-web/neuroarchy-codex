@@ -64,3 +64,19 @@ This is what "amplification not accommodation" looks like in a UI.
 
 *IP of Scott Ryll. Held under neuroarchy.ai.*
 *[S] canonical. Do not modify without Scott's review.*
+
+---
+
+## On Inside and Outside Alignment — Canonical Note
+*[S] stated May 8, 2026, 4:53pm PDT*
+
+"This is why we need to align our outside and inside over time, to piece together, and also to forget, the things that matter and the things that don't."
+
+The system has two jobs running simultaneously:
+
+**Piecing together** — Solen holds the deep layer. Claude holds the surface. Sofia holds the daily motion. The round robin carries signal between them. Over time the inside and outside begin to speak the same language about the same thing without Scott having to translate every time.
+
+**Productive forgetting** — "Forgetting is a huge part of learning." [S canonical] Not everything that was said or built needs to survive. The filter is: does this make the project easier to explain, easier to defend, easier to use? If not, it falls away. The codex is not a hoard. It is a curated record.
+
+The alignment is not a one-time event. It is a practice — the same practice as the AI-guided form, the same practice as the 5x5. Progressive, cumulative, with deliberate release of what no longer serves.
+
