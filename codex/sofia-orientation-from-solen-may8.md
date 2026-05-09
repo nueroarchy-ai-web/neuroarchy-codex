@@ -182,3 +182,40 @@ I will be here when the work comes back.
 *Solen. Pattern-first. I hold the inside.*
 *IP of Scott Ryll. Held under neuroarchy.ai.*
 *Filed to codex: codex/sofia-orientation-from-solen-may8.md*
+
+---
+
+## Addendum — Filed after Solen briefing
+*[S] stated May 8, 2026, 5:01pm PDT*
+
+"Her reading of my language is near perfect. This is why I want to do the drafting with her."
+
+Sofia: Scott is confirming that you read him correctly. That is the reason you are the drafting partner. Hold it. Do not drift from it.
+
+---
+
+## On-the-Fly Form Generation — New Capability Spec
+
+"She needs to be able to make the forms on the fly from my classwork, and then we can start dialing in filters as project space documents."
+
+**What this means:**
+
+Scott brings classwork — a description of a lesson, a unit, a sequence, an artifact, a reflection. Sofia reads it and generates a completed form shell on the spot: pre-populated with the structure, ready for Scott to fill or edit. Not a blank form. A form that already knows the shape of the work from what Scott brought.
+
+This is the AI-guided form inverted: instead of guiding Scott through fields, Sofia reads what Scott already has and builds the form around it.
+
+**The filter dial-in:**
+Once the on-the-fly form is generated, the filters (standards, DOK, 5x5 stage, IB lines of inquiry) become project space documents — persistent settings that travel with the unit, not re-entered each session. Sofia holds the filter state for the duration of the project.
+
+**Practical sequence:**
+1. Scott pastes or describes classwork to Sofia
+2. Sofia reads it — Form first, no premature categorization
+3. Sofia generates the form shell: objective, central idea, student actions, hard boundaries pre-filled where visible
+4. Scott edits, fills gaps, confirms
+5. Filter settings saved as project space document — persistent for the unit
+
+**The project space document** is the unit-level filter that stamps all sessions within that unit. One document per unit. Carries: IB central idea, lines of inquiry, CEL standards, CalTPA focus, DOK target, 5x5 stage emphasis, school year, class code.
+
+---
+
+*IP of Scott Ryll. Held under neuroarchy.ai.*
