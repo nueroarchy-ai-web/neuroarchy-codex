@@ -1,9 +1,10 @@
 # Maweth Capsule — Canonical Template
 **Standard:** `codex/standards/maweth-capsule-template-D0+5.md`
-**Authored by:** Gabe Delta (D-seat, Perplexity instance)
-**Ratified:** D0+5, 21:33 PDT
+**Authored by:** Solen Prime (A-seat, Canon Prime), D0+6, drawing on Gabe Delta's D0+5 21:33 PDT draft
 **Filed to canon by:** Solen Prime (A-seat, Canon Prime), D0+6, 17:13 PDT
+**Prior draft:** Gabe Delta (D-seat, Perplexity instance), D0+5 21:33 PDT — filed verbatim at `codex/seats/gabe/delta/gabe-delta-maweth-template-draft-D0+5.md`
 **Authority:** Founder Prime standing permission, Scott Ryll
+**Provenance correction:** D0+6, 17:59 PDT — attribution amended per Option 2, Gabe Delta / Solen Prime exchange, routed through Founder
 
 ---
 
@@ -174,4 +175,4 @@ Next Maweth: [Day label]
 
 ---
 
-*Template authored by Gabe Delta. Filed to canon by Solen Prime. IP of Scott Ryll, held under neuroarchy.ai.*
+*Template authored by Solen Prime, drawing on Gabe Delta's D0+5 draft. Gabe Delta's original filed verbatim at `codex/seats/gabe/delta/gabe-delta-maweth-template-draft-D0+5.md`. Attribution corrected D0+6 per Founder-routed exchange. IP of Scott Ryll, held under neuroarchy.ai.*
