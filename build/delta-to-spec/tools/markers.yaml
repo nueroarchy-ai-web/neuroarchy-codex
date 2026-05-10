@@ -1,0 +1,45 @@
+# markers.yaml — speaker-detection marker definitions
+# Per spec §4.1: Living config, not hardcoded strings.
+# Platform UI conventions change; new markers can be added here without code changes.
+#
+# Each platform block has:
+#   scott: list of strings that mark a Scott (human) segment
+#   ai:    list of strings that mark an AI segment
+#
+# Markers are matched at the start of a line (after stripping leading whitespace).
+# Bold-markdown variants (e.g. "**You said:**") are listed alongside plain forms.
+
+chatgpt:
+  scott:
+    - "You said:"
+    - "**You said:**"
+  ai:
+    - "ChatGPT said:"
+    - "**ChatGPT said:**"
+
+claude:
+  scott:
+    - "Human:"
+    - "**Human:**"
+  ai:
+    - "Assistant:"
+    - "**Assistant:**"
+    - "Claude:"
+    - "**Claude:**"
+
+generic:
+  scott:
+    - "Scott:"
+    - "**Scott:**"
+    - "User:"
+    - "**User:**"
+  ai:
+    - "AI:"
+    - "**AI:**"
+
+# Explicit Scott-typed markers (preferred when user types them before paste)
+explicit:
+  scott:
+    - "[S]"
+  ai:
+    - "[A]"
